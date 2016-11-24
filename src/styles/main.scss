@@ -14,17 +14,39 @@ html, body {
 .stage {
   position: relative;
   width: 100%;
-  height: 680px;
+  height: 100%;
+  // height: 680px;
 }
 /* stage -- end */
 
 /* image -- start */
-.image-sec {
+.img-sec {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
   background-color: #ddd;
+  //编译后放到最外层
+  @at-root {
+    .img-figure {
+      position:absolute;
+      width: 320px;//图片是240*240
+      height: 360px;
+      margin: 0;
+      padding: 40px;
+      background-color: #fff;
+      box-sizing: border-box;//width包含padding
+    }
+    // 图片下的文字
+    figcaption{
+      text-align: center;
+      .img-title {
+        margin: 20px 0 0 0;
+        color: #a7a0a2;
+        font-size: 16px;
+      }
+    }
+  }
 }
 /* image -- end */
 
