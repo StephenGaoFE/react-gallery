@@ -5,6 +5,8 @@ one photo gallery project based on react
 
 使用Yeoman generator for ReactJS and Webpack创建
 
+![](http://www.renwentech.com/wp-content/uploads/2016/11/react-gallery.jpg)
+
 ## how to use
 - clone this repo
 - npm install 
@@ -14,6 +16,7 @@ one photo gallery project based on react
 ## reference
 - https://github.com/react-webpack-generators/generator-react-webpack
 - https://github.com/materliu/gallery-by-react
+- http://www.imooc.com/learn/507
 
 
 点击下面链接可以在线预览
