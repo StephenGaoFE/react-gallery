@@ -1,4 +1,12 @@
-/* Base Application Styles */
+
+@font-face {
+  font-family: 'icons-turn-arrow';
+  src: url('../fonts/icons/turn-arrow.eot') format("embedded-opentype"), /* IE9*/
+  url('../fonts/icons/turn-arrow.woff') format('woff'), /* chrome、firefox */
+  url('../fonts/icons/turn-arrow.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('../fonts/icons/turn-arrow.svg') format('svg'); /* iOS 4.1- */
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -42,7 +50,7 @@ html, body {
       transform-style: preserve-3d;
       transition: transform .6s ease-in-out, left .6s ease-in-out, top .6s ease-in-out;
       &.is-inverse {
-        transform: translate(320px) rotateY(180deg);//让其保持在原地旋转180deg
+        transform: translate(320px) rotateY(180deg);//右移320px，让其保持在原地旋转180deg
       }
     }
     /*先开始时.img-back，旋转了180度，因为translateZ(1px)，位于正面图像的下方*/
@@ -82,6 +90,39 @@ html, body {
   z-index: 101;
   width: 100%;
   text-align: center; 
+  @at-root {
+    .controller-unit {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      margin: 0 10px;
+      text-align: center;
+      cursor: pointer;
+      background-color: #aaa;
+      border-radius: 50%;
+      transform: scale(.5);//默认缩放50%
+      vertical-align: middle;//按照中部对其
+      transition: transform .6s ease-in-out, background-color .3s;
+      &.is-center {//居中态
+        background: #888888;
+        transform: scale(1);
+        //使用伪元素添加icon
+        &::after {
+          color: #fff;
+          font-family: 'icons-turn-arrow';
+          font-size: 80%;
+          line-height: 30px;
+          content: '\e600';
+          -webkit-font-smoothing: antialiased;//css3抗锯齿
+          -moz-osx-smoothing:grayscale;
+        }
+        &.is-inverse {
+          background: #555;
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
 }
 /* controller -- end */
 

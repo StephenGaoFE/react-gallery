@@ -25,4 +25,9 @@ If you have any question, please use email, weibo or QQ to contact me.
 
 Star this repo if you like it！！！
 
+## 感想
+generator-react-webpack 这个库简直坑的飞起，萌新杀手。别问我怎么知道的QwQ
+- 目前只能支持到react15.3.0，要在package.json中强制限定版本，否则。。呵呵。希望官方修复
+- `index.html`里面`src="./assets/app.js`中，assets前少了一个点，否则npm run dist出来有问题
+- cfg/default.js里面`publicPath: './assets/'`assets前少了一个点
 

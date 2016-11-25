@@ -26,7 +26,7 @@ let get30DegRandom = () => {
   return deg + Math.ceil(Math.random() * 30)
 }
 
-// figure:单独抽出来仍然有意义的组件。单个照片item
+// 单张照片组件
 class ImgFigure extends React.Component {
   constructor(props) {
     super(props);
@@ -64,7 +64,7 @@ class ImgFigure extends React.Component {
     //控制图片翻转
     let imgFigureClassName = 'img-figure';
     imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse' : ''
-
+      //figure:单独抽出来仍然有意义的组件。单个照片item
     return (
       <figure className={imgFigureClassName} style={styleObj} onClick={this.handleClick}>
 				<img src={this.props.data.imageURL} alt={this.props.data.title}/>
@@ -78,6 +78,41 @@ class ImgFigure extends React.Component {
     );
   }
 }
+
+//控制组件
+class ControllerUnit extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(e) {
+    //如果点击的是当前正在选中态的按钮，则翻转图片，否则将对应的图片居中
+    if (this.props.arrange.isCenter) {
+      this.props.inverse()
+    } else {
+      this.props.center();
+    }
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  render() {
+    let controllerUnitClassName = 'controller-unit';
+    //如果对应的是居中的图片，显示控制按钮的居中态
+    if (this.props.arrange.isCenter) {
+      controllerUnitClassName += ' is-center ';
+      //如果同时是翻转图片，显示翻转状态
+      if (this.props.arrange.isInverse) {
+        controllerUnitClassName += 'is-inverse'
+      }
+    }
+    return (
+      <span className={ controllerUnitClassName } onClick={this.handleClick}></span>
+    )
+  }
+}
+
 
 class GalleryByReactApp extends React.Component {
   constructor(props) {
@@ -274,6 +309,8 @@ class GalleryByReactApp extends React.Component {
         }
       }
       imgFigures.push(<ImgFigure data={value} key={index} ref={'imgFigure' + index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
+
+      controllerUnits.push(<ControllerUnit key={index} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
     });
 
     return (
